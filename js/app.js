@@ -168,7 +168,7 @@ function vPet() {
       .map(s => {
         const o = SHOP.filter(i => i[3] === s && st.own.includes(i[0]));
         return o.length
-          ? `<div class="row"><b>${               { hat: 'Cabeza', face: 'Cara', neck: 'Cuello' }[s]             }</b><span>${o
+          ? `<div class="row"><b>${ { hat: 'Cabeza', face: 'Cara', neck: 'Cuello' }[s] }</b><span>${o
               .map(
                 i =>
                   `<button class="btn ${
@@ -188,7 +188,7 @@ function vShop() {
   }</div>
   <div class="grid">${SHOP.map(i => {
     const h = st.own.includes(i[0]);
-    return `<div class="lv shop"><div class="e">${i[0]}</div><h3>${i[1]}</h3><button class="btn ${       h ? 'ghost' : ''     }" style="margin-top:8px;padding:8px 14px" ${
+    return `<div class="lv shop"><div class="e">${i[0]}</div><h3>${i[1]}</h3><button class="btn ${ h ? 'ghost' : '' }" style="margin-top:8px;padding:8px 14px" ${
       h ? 'disabled' : `data-a="buy" data-e="${i[0]}"`
     }>${h ? 'Tuyo ✓' : '🪙 ' + i[2]}</button></div>`;
   }).join('')}</div>`;
@@ -231,7 +231,7 @@ function vCfg() {
   <div class="lv" style="text-align:left">
     <div class="row"><b>Tema</b><span>${[
       ['auto', '🌗 Auto'],
-      ['light', '☀️ Claro'],
+      ['light', '☀️️ Claro'],
       ['dark', '🌙 Oscuro']
     ]
       .map(
@@ -395,7 +395,7 @@ async function win() {
   // Guardar victoria en Backend si hay usuario logueado
   if (st.userId) {
     try {
-      await fetch('http://localhost:3000/api/users/save-win', {
+      await fetch('https://ensenas-app.onrender.com/api/users/save-win', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -433,7 +433,7 @@ async function win() {
 // Cargar lecciones dinámicamente desde el Backend
 async function cargarLeccionesBackend() {
   try {
-    const res = await fetch('http://localhost:3000/api/levels');
+    const res = await fetch('https://ensenas-app.onrender.com/api/levels');
     if (res.ok) {
       const data = await res.json();
       if (data && data.length > 0) {
@@ -502,7 +502,7 @@ document.addEventListener('click', async e => {
     if (!emailInp) return toast('Ingresa un correo electrónico');
 
     try {
-      const res = await fetch('http://localhost:3000/api/users/login', {
+      const res = await fetch('https://ensenas-app.onrender.com/api/users/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: emailInp, username: emailInp.split('@')[0] })
